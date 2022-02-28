@@ -1,0 +1,49 @@
+#cloud-config
+autoinstall:
+  version: 1
+  early-commands:
+  - systemctl stop ssh # otherwise packer tries to connect and exceed max attempts
+  debconf-selections: |
+    choose-mirror-bin mirror/http/proxy string
+    tasksel tasksel/first multiselect standard, server
+  packages:
+  - cryptsetup
+  - build-essential
+  - libssl-dev
+  - libreadline-dev
+  - zlib1g-dev
+  - linux-source
+  - dkms
+  - nfs-common
+  - linux-headers-generic
+  - perl
+  - cifs-utils
+  - software-properties-common
+  - rsync
+  - ifupdown
+  network:
+    network:
+      version: 2
+      ethernets:
+        ens160:
+          dhcp4: true
+          nameservers:
+            search: [lan, local]
+            addresses: [8.8.8.8]
+  identity:
+    hostname: ccdc-focal
+    password: $1$vHRSqO5j$9BU7DaZGdW.28BGJ7LNhc1
+    realname: vagrant
+    username: vagrant
+  locale: en_GB.UTF-8
+  keyboard:
+    layout: uk
+    variant: UK
+  ssh:
+    install-server: true
+    allow-pw: true
+  user-data:
+    timezone: UTC
+  late-commands:
+  - curtin in-target --target=/target -- apt update           
+  - curtin in-target --target=/target -- apt upgrade -y
