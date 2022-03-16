@@ -27,11 +27,8 @@ autoinstall:
       ethernets:
         ens160:
           dhcp4: true
-          nameservers:
-            search: [lan, local]
-            addresses: [8.8.8.8]
   identity:
-    hostname: ccdc-focal
+    hostname: ccdc-ubuntu2004-test
     password: $1$vHRSqO5j$9BU7DaZGdW.28BGJ7LNhc1
     realname: vagrant
     username: vagrant
