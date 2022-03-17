@@ -24,12 +24,6 @@ autoinstall:
   - software-properties-common
   - rsync
   - ifupdown
-  network:
-    network:
-      version: 2
-      ethernets:
-        ens160:
-          dhcp4: true
   identity:
     hostname: ccdc-ubuntu2004-test
     password: $1$vHRSqO5j$9BU7DaZGdW.28BGJ7LNhc1
