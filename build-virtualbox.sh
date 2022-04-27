@@ -19,7 +19,7 @@ $PACKER build \
   -only=virtualbox-iso \
   -except=vsphere,vsphere-template \
   -var 'build_directory=./output/' \
-  -var 'disk_size=60000' \
+  -var 'disk_size=200000' \
   -var 'cpus=2' \
   -var 'memory=4096' \
   -var 'box_basename=ccdc-basebox/ubuntu-20.04' \

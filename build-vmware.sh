@@ -21,7 +21,7 @@ $PACKER build \
   -only=vmware-iso \
   -except=vsphere,vsphere-template \
   -var 'build_directory=./output/' \
-  -var 'disk_size=60000' \
+  -var 'disk_size=200000' \
   -var 'cpus=2' \
   -var 'memory=4096' \
   -var 'vmx_remove_ethernet_interfaces=true' \

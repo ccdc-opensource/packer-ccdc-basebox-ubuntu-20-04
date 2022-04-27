@@ -27,7 +27,7 @@ $PACKER build \
   -except=vagrant \
   -var 'customise_for_buildmachine=1' \
   -var 'build_directory=./output/' \
-  -var 'disk_size=60000' \
+  -var 'disk_size=200000' \
   -var 'cpus=2' \
   -var 'memory=4096' \
   -var 'vmx_remove_ethernet_interfaces=false' \
