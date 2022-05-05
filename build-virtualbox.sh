@@ -12,7 +12,7 @@ fi
 
 echo 'creating output directory'
 mkdir -p output
-rm -rf ./output/packer-ubuntu-20.04-x86_64-virtualbox
+rm -rf ./output/packer-ubuntu-22.04-x86_64-virtualbox
 
 echo 'building base images'
 $PACKER build \
@@ -22,7 +22,7 @@ $PACKER build \
   -var 'disk_size=200000' \
   -var 'cpus=2' \
   -var 'memory=4096' \
-  -var 'box_basename=ccdc-basebox/ubuntu-20.04' \
-  ./ubuntu-20.04-amd64.json
+  -var 'box_basename=ccdc-basebox/ubuntu-22.04' \
+  ./ubuntu-22.04-amd64.json
 
-mv output/ccdc-basebox/ubuntu-20.04.virtualbox.box output/ccdc-basebox/ubuntu-20.04.$(date +%Y%m%d).0.virtualbox.box
+mv output/ccdc-basebox/ubuntu-22.04.virtualbox.box output/ccdc-basebox/ubuntu-22.04.$(date +%Y%m%d).0.virtualbox.box
