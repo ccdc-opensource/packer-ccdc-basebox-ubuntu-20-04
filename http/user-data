@@ -1,4 +1,10 @@
 #cloud-config
+chpasswd:
+    expire: false
+    list:
+        - installer:$1$vHRSqO5j$9BU7DaZGdW.28BGJ7LNhc1
+ssh_authorized_keys:
+    - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQBjdgsKMvOSEGdtJ/oANgHtkr/bLdjI0zzk1WJKgq5mfw6OiD5vCc4mWM9P7KZOndLc7G3NB0ijQSgQ37PT99f2cHpzs6jTKi+OoAAhfeNImr/j+7KV3zJlFPXOBA0qdWQnSRp/HJNoNfL5AtcMPwaEIFy06kzKYS/Ukt80stzMOIcEGTh9Zw5H2Kag7x0CbZVXyh5Um3SuSw9uR2+BSDrnZBws9BVa6e3mNIZQQVM0508YcU0KyxZN2ablinipO/XrmwHOUzxvn98KsEv43dqXTV9IaE2dAr6H9cFhiTi9hnMQZhY/N8PHbiE8dVL7hNhmBJGDcgAkFW7HRgbKvzbJ installer
 autoinstall:
   version: 1
   early-commands:
@@ -22,7 +28,7 @@ autoinstall:
   - rsync
   - ifupdown
   identity:
-    hostname: ccdc-ubuntu2004-test
+    hostname: ccdc-ubuntu2204-test
     password: $1$vHRSqO5j$9BU7DaZGdW.28BGJ7LNhc1
     realname: vagrant
     username: vagrant

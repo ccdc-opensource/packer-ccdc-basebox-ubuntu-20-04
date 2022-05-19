@@ -14,7 +14,7 @@ echo 'creating output directory'
 mkdir -p output
 
 echo 'cleaning up intermediate output'
-rm -rf ./output/packer-ubuntu-20.04-amd64-vmware
+rm -rf ./output/packer-ubuntu-22.04-amd64-vmware
 
 echo 'building base images'
 $PACKER build \
@@ -25,8 +25,8 @@ $PACKER build \
   -var 'cpus=2' \
   -var 'memory=4096' \
   -var 'vmx_remove_ethernet_interfaces=true' \
-  -var 'box_basename=ccdc-basebox/ubuntu-20.04' \
-  ./ubuntu-20.04-amd64.json
+  -var 'box_basename=ccdc-basebox/ubuntu-22.04' \
+  ./ubuntu-22.04-amd64.json
 
 
-mv output/ccdc-basebox/ubuntu-20.04.vmware.box output/ccdc-basebox/ubuntu-20.04.$(date +%Y%m%d).0.vmware_desktop.box
+mv output/ccdc-basebox/ubuntu-22.04.vmware.box output/ccdc-basebox/ubuntu-22.04.$(date +%Y%m%d).0.vmware_desktop.box
