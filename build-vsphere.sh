@@ -24,7 +24,7 @@ rm -rf ./output/packer-ubuntu-22.04-amd64-vmware
 
 echo 'building base images'
 ${PACKER} build \
-  -only=vsphere-iso.ubuntu-22.04 \
+  -only=vsphere-iso.ubuntu-2204 \
   -var 'build_directory=./output/' \
   -var 'disk_size=150000' \
   -var 'cpus=2' \
