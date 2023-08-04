@@ -28,7 +28,7 @@ autoinstall:
   - rsync
   - ifupdown
   identity:
-    hostname: ccdc-ubuntu2204-test
+    hostname: ccdc-ubuntu2204
     password: $1$vHRSqO5j$9BU7DaZGdW.28BGJ7LNhc1
     realname: vagrant
     username: vagrant
