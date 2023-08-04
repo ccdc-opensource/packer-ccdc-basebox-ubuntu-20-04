@@ -371,13 +371,13 @@ build {
   post-processors {
 
     post-processor "vagrant" {
-      except = ["vsphere-iso.rocky-9"]
+      except = ["vsphere-iso.ubuntu-22.04"]
       output = "${var.output_directory}/${ var.vagrant_box }.${ replace(replace(replace(source.type, "-iso", ""), "hyper-v", "hyperv"), "vmware", "vmware_desktop") }.box"
     }
 
     # Once box has been created, upload it to Artifactory
     post-processor "shell-local" {
-      except = ["vsphere-iso.rocky-9"]
+      except = ["vsphere-iso.ubuntu-22.04"]
       command = join(" ", [
         "jf rt upload",
         "--target-props \"box_name=${ var.vagrant_box };box_provider=${replace(replace(replace(source.type, "-iso", ""), "hyper-v", "hyperv"), "vmware", "vmware_desktop")};box_version=${ formatdate("YYYYMMDD", timestamp()) }.0\"",
