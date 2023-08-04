@@ -7,7 +7,6 @@ roles:
   - src: git@github.com:ccdc-opensource/ansible-role-install-vm-tools
     scm: git
     name: ccdc.install-vm-tools
-    version: install-vm-tools-linux
   - src: git@github.com:ccdc-opensource/ansible-role-compact-vm-image
     scm: git
     name: ccdc.compact-vm-image
