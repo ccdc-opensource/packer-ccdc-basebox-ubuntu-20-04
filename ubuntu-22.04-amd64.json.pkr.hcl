@@ -60,8 +60,8 @@ variable "guest_additions_url" {
 }
 
 variable "headless" {
-  type    = string
-  default = ""
+  type    = bool
+  default = "false"
 }
 
 variable "http_proxy" {
@@ -202,15 +202,10 @@ variable "vmware_center_vm_network" {
 # Read the documentation for locals blocks here:
 # https://www.packer.io/docs/templates/hcl_templates/blocks/locals
 locals {
-  build_timestamp = "${legacy_isotime("20060102150405")}"
   http_directory  = "${path.root}/http"
 }
 
-# source blocks are generated from your builders; a source can be referenced in
-# build blocks. A build block runs provisioner and post-processors on a
-# source. Read the documentation for source blocks here:
-# https://www.packer.io/docs/templates/hcl_templates/blocks/source
-source "hyperv-iso" "ubuntu-22.04" {
+source "hyperv-iso" "ubuntu-2204" {
   boot_command       = ["<esc><wait>", "c<wait>", "set gfxpayload=keep<wait><enter>", "linux /casper/vmlinuz autoinstall ds=\"nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/\"<wait><enter>", "initrd /casper/initrd<wait><enter>", "boot<enter>"]
   boot_wait          = "10s"
   communicator       = "ssh"
@@ -233,7 +228,7 @@ source "hyperv-iso" "ubuntu-22.04" {
 }
 
 
-source "qemu" "ubuntu-22.04" {
+source "qemu" "ubuntu-2204" {
   boot_command     = ["<esc><wait>", "c<wait>", "set gfxpayload=keep<wait><enter>", "linux /casper/vmlinuz autoinstall ds=\"nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/\"<wait><enter>", "initrd /casper/initrd<wait><enter>", "boot<enter>"]
   boot_wait        = "10s"
   cpus             = "${var.cpus}"
@@ -252,7 +247,7 @@ source "qemu" "ubuntu-22.04" {
   vm_name          = "${var.template}"
 }
 
-source "virtualbox-iso" "ubuntu-22.04" {
+source "virtualbox-iso" "ubuntu-2204" {
   boot_command            = ["<esc><wait>", "c<wait>", "set gfxpayload=keep<wait><enter>", "linux /casper/vmlinuz autoinstall ds=\"nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/\"<wait><enter>", "initrd /casper/initrd<wait><enter>", "boot<enter>"]
   boot_wait               = "4s"
   cpus                    = "${var.cpus}"
@@ -278,7 +273,7 @@ source "virtualbox-iso" "ubuntu-22.04" {
   vm_name                 = "${var.template}"
 }
 
-source "vmware-iso" "ubuntu-22.04" {
+source "vmware-iso" "ubuntu-2204" {
   boot_command         = ["<esc><wait>", "c<wait>", "set gfxpayload=keep<wait><enter>", "linux /casper/vmlinuz autoinstall ds=\"nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/\"<wait><enter>", "initrd /casper/initrd<wait><enter>", "boot<enter>"]
   boot_wait            = "4s"
   cpus                 = "${var.cpus}"
@@ -304,10 +299,10 @@ source "vmware-iso" "ubuntu-22.04" {
     "ethernet0.pciSlotNumber" = "32"
     "virtualHW.version"       = "13"
   }
-  vmx_remove_ethernet_interfaces = "${var.vmx_remove_ethernet_interfaces}"
+ // vmx_remove_ethernet_interfaces = "${var.vmx_remove_ethernet_interfaces}"
 }
 
-source "vsphere-iso" "ubuntu-22.04" {
+source "vsphere-iso" "ubuntu-2204" {
   boot_command         = ["<wait>c<wait>set gfxpayload=keep<enter><wait>linux /casper/vmlinuz quiet autoinstall ds=nocloud-net\\;s=http://{{.HTTPIP}}:{{.HTTPPort}}/ubuntu/ ---<enter><wait>initrd /casper/initrd<wait><enter><wait>boot<enter><wait>"]
   vcenter_server       = "${var.vmware_center_host}"
   host                 = "${var.vmware_center_esxi_host}"
@@ -348,10 +343,12 @@ source "vsphere-iso" "ubuntu-22.04" {
 # https://www.packer.io/docs/templates/hcl_templates/blocks/build
 build {
   sources = [
-    "source.qemu.ubuntu-22.04",
-    "source.virtualbox-iso.ubuntu-22.04",
-    "source.vmware-iso.ubuntu-22.04",
-    "source.vsphere-iso.ubuntu-22.04"
+    // "source.hyperv-iso.ubuntu-22.04",
+    // "source.parallels-iso.ubuntu-22.04",
+    "source.qemu.ubuntu-2204",
+    "source.virtualbox-iso.ubuntu-2204",
+    "source.vmware-iso.ubuntu-2204",
+    "source.vsphere-iso.ubuntu-2204"
   ]
 
 
