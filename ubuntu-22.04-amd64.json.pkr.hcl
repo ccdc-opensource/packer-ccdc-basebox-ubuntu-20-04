@@ -303,7 +303,7 @@ source "vmware-iso" "ubuntu-2204" {
 }
 
 source "vsphere-iso" "ubuntu-2204" {
-  boot_command         = ["<wait>c<wait>set gfxpayload=keep<enter><wait>linux /casper/vmlinuz quiet autoinstall ds=nocloud-net\\;s=http://{{.HTTPIP}}:{{.HTTPPort}}/ubuntu/ ---<enter><wait>initrd /casper/initrd<wait><enter><wait>boot<enter><wait>"]
+  boot_command         = ["<esc><wait>", "c<wait>", "set gfxpayload=keep<wait><enter>", "linux /casper/vmlinuz autoinstall ds=\"nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/\"<wait><enter>", "initrd /casper/initrd<wait><enter>", "boot<enter>"]
   vcenter_server       = "${var.vmware_center_host}"
   host                 = "${var.vmware_center_esxi_host}"
   username             = "${var.vmware_center_username}"
