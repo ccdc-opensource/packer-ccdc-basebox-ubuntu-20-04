@@ -1,3 +1,5 @@
-/packer_cache
 /output
+/packer_cache
 vsphere-environment-do-not-add
+.DS_Store
+ansible_provisioning/roles
