@@ -1,32 +1,32 @@
 #cloud-config
 chpasswd:
-    expire: false
-    list:
-        - installer:$1$vHRSqO5j$9BU7DaZGdW.28BGJ7LNhc1
+  expire: false
+  list:
+    - installer:$1$vHRSqO5j$9BU7DaZGdW.28BGJ7LNhc1
 ssh_authorized_keys:
-    - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQBjdgsKMvOSEGdtJ/oANgHtkr/bLdjI0zzk1WJKgq5mfw6OiD5vCc4mWM9P7KZOndLc7G3NB0ijQSgQ37PT99f2cHpzs6jTKi+OoAAhfeNImr/j+7KV3zJlFPXOBA0qdWQnSRp/HJNoNfL5AtcMPwaEIFy06kzKYS/Ukt80stzMOIcEGTh9Zw5H2Kag7x0CbZVXyh5Um3SuSw9uR2+BSDrnZBws9BVa6e3mNIZQQVM0508YcU0KyxZN2ablinipO/XrmwHOUzxvn98KsEv43dqXTV9IaE2dAr6H9cFhiTi9hnMQZhY/N8PHbiE8dVL7hNhmBJGDcgAkFW7HRgbKvzbJ installer
+  - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQBjdgsKMvOSEGdtJ/oANgHtkr/bLdjI0zzk1WJKgq5mfw6OiD5vCc4mWM9P7KZOndLc7G3NB0ijQSgQ37PT99f2cHpzs6jTKi+OoAAhfeNImr/j+7KV3zJlFPXOBA0qdWQnSRp/HJNoNfL5AtcMPwaEIFy06kzKYS/Ukt80stzMOIcEGTh9Zw5H2Kag7x0CbZVXyh5Um3SuSw9uR2+BSDrnZBws9BVa6e3mNIZQQVM0508YcU0KyxZN2ablinipO/XrmwHOUzxvn98KsEv43dqXTV9IaE2dAr6H9cFhiTi9hnMQZhY/N8PHbiE8dVL7hNhmBJGDcgAkFW7HRgbKvzbJ installer
 autoinstall:
   version: 1
   early-commands:
-  - systemctl stop ssh # otherwise packer tries to connect and exceed max attempts
+    - systemctl stop ssh # otherwise packer tries to connect and exceed max attempts
   debconf-selections: |
     choose-mirror-bin mirror/http/proxy string
     tasksel tasksel/first multiselect standard, server
   packages:
-  - cryptsetup
-  - build-essential
-  - libssl-dev
-  - libreadline-dev
-  - zlib1g-dev
-  - linux-source
-  - dkms
-  - nfs-common
-  - linux-headers-generic
-  - perl
-  - cifs-utils
-  - software-properties-common
-  - rsync
-  - ifupdown
+    - cryptsetup
+    - build-essential
+    - libssl-dev
+    - libreadline-dev
+    - zlib1g-dev
+    - linux-source
+    - dkms
+    - nfs-common
+    - linux-headers-generic
+    - perl
+    - cifs-utils
+    - software-properties-common
+    - rsync
+    - ifupdown
   identity:
     hostname: ccdc-ubuntu2204
     password: $1$vHRSqO5j$9BU7DaZGdW.28BGJ7LNhc1
@@ -42,5 +42,5 @@ autoinstall:
   user-data:
     timezone: UTC
   late-commands:
-  - curtin in-target --target=/target -- apt update           
-  - curtin in-target --target=/target -- apt upgrade -y
+    - curtin in-target --target=/target -- apt update
+    - curtin in-target --target=/target -- apt upgrade -y
