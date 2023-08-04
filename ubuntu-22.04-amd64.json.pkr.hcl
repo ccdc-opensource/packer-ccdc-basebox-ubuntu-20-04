@@ -210,7 +210,7 @@ locals {
 # build blocks. A build block runs provisioner and post-processors on a
 # source. Read the documentation for source blocks here:
 # https://www.packer.io/docs/templates/hcl_templates/blocks/source
-source "hyperv-iso" "ubuntu-22.041" {
+source "hyperv-iso" "ubuntu-22.04" {
   boot_command       = ["<esc><wait>", "c<wait>", "set gfxpayload=keep<wait><enter>", "linux /casper/vmlinuz autoinstall ds=\"nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/\"<wait><enter>", "initrd /casper/initrd<wait><enter>", "boot<enter>"]
   boot_wait          = "10s"
   communicator       = "ssh"
@@ -233,7 +233,7 @@ source "hyperv-iso" "ubuntu-22.041" {
 }
 
 
-source "qemu" "ubuntu-22.043" {
+source "qemu" "ubuntu-22.04" {
   boot_command     = ["<esc><wait>", "c<wait>", "set gfxpayload=keep<wait><enter>", "linux /casper/vmlinuz autoinstall ds=\"nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/\"<wait><enter>", "initrd /casper/initrd<wait><enter>", "boot<enter>"]
   boot_wait        = "10s"
   cpus             = "${var.cpus}"
@@ -348,7 +348,6 @@ source "vsphere-iso" "ubuntu-22.04" {
 # https://www.packer.io/docs/templates/hcl_templates/blocks/build
 build {
   sources = [
-    "source.parallels-iso.ubuntu-22.04",
     "source.qemu.ubuntu-22.04",
     "source.virtualbox-iso.ubuntu-22.04",
     "source.vmware-iso.ubuntu-22.04",
