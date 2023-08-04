@@ -26,7 +26,7 @@ echo 'building base images'
 ${PACKER} build \
   -only=vsphere-iso.ubuntu-2204 \
   -var 'build_directory=./output/' \
-  -var 'disk_size=150000' \
+  -var 'disk_size=60000' \
   -var 'cpus=2' \
   -var 'memory=4096' \
   -var 'box_basename=ccdc-basebox/ubuntu-22.04' \
