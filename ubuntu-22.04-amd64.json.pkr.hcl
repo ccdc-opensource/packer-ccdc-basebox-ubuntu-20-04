@@ -321,7 +321,7 @@ source "vsphere-iso" "ubuntu-2204" {
       disk_size = "${var.disk_size}"
       disk_thin_provisioned = true
   }
-  guest_os_type        = "ubuntu-64"
+  guest_os_type        = "ubuntu64Guest"
   http_directory       = "${local.http_directory}"
   iso_checksum         = "${var.iso_checksum_type}:${var.iso_checksum}"
   iso_url              = "${var.mirror}/${var.mirror_directory}/${var.iso_name}"
