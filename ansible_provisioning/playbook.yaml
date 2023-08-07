@@ -6,7 +6,8 @@
   roles:
   - role: ccdc.vagrant-base-box
     vars:
-      github_repo_name: packer-basebox-centos
+      github_repo_name: packer-basebox-ubuntu
+      sudo_group: sudo
   - role: ccdc.install-vm-tools
   - role: devsec.hardening.ssh_hardening
     vars:
@@ -15,3 +16,4 @@
   - role: ccdc.compact-vm-image
     vars:
       wipe_swap: false
+      
